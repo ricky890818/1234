@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+<head>
+    <meta charset="utf-8">
+    <script language="javascript">
+            window.onload = function () {
+                var show = @Html.Raw(Json.Encode(TempData["show"]));
+                    if (show != null) {
+                    alert(show);
+                }
+            }
+    </script>
+</head>
+
+<body style="background-color:#E4B295">
+    <div class="dowebok">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <style>
+                        img {
+                            float: left
+                        }
+                    </style>
+                    <img src="~/2.png" width="30%" alt="IMG">
+                </div>
+
+                <form class="login100-form validate-form" action="#" method="post">
+                    <!--form開頭新增action="#" method="post"-->
+                    <div style="padding-left:40em;">
+                        <div style="padding-top:10em;">
+                            <span class="login100-form-title">
+                                忘記密碼
+                            </span>
+
+                            <div class="wrap-input100 validate-input">
+                                <input class="input100" type="text" name="email" placeholder="信箱">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <br/>
+                            <input type="submit" class="btn-default" href="https://localhost:43388/Mail_/Forget/" value="傳送驗證信">
+                            <br/>
+                            
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>

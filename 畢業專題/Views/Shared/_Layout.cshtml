@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        .j {
+            float: left;
+            margin-top: 10px;
+        }
+    </style>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!--Google登入-->
+    @using Microsoft.AspNet.Identity
+
+    </head>
+    <body>
+        <div>
+            <span style="color:white">
+                <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top  " style="background-color:#A15B54">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li style="font-size:25pt">
+                                    <a href="#" style="background-color:#A15B54">LOVE 浪福</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="navbar-collapse collapse">
+
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li style="font-size:15pt">
+
+                                    <a href="https://localhost:44388" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />首頁</a>
+                                </li>
+                                <li class=" dropdown" style="font-size:15pt">
+
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="https://localhost:44388" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />帶我回家 <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" style="font-size:10pt">
+                                        <li><a href="https://localhost:44388/Home/Adopt">實體領養</a></li>
+                                        <li><a href="https://localhost:44388/tDogs/Index">雲端寶貝</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown" style="font-size:15pt">
+
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="https://localhost:44388" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />捐贈物資<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" style="font-size:10pt">
+                                        <li><a>棉被</a></li>
+                                        <li><a>寵物飼料</a></li>
+                                        <li><a>寵物罐頭</a></li>
+                                        <li><a>寵物零食</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown" style="font-size:15pt">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="https://localhost:44388" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />寵心靈<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" style="font-size:10pt">
+                                        <li><a>心理測驗</a></li>
+                                        <li><a>寵物辨識</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                @if (Session["Member"] != null)
+                                {
+                                    <li class="dropdown" style="font-size:15pt">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="https://localhost:44388" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />帳號<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" style="font-size:10pt">
+                                            <li><a href="https://localhost:44388/Crud/Edit">修改資料</a></li>
+                                            <li><a href="https://localhost:44388/Home/Logout">登出</a></li>
+                                        </ul>
+                                    </li>
+
+                                }
+                                else if (Request.IsAuthenticated)
+                                {
+                                    <li class="dropdown" style="font-size:15pt">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="https://localhost:44388" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />帳號<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" style="font-size:10pt">
+                                            <li>@Html.ActionLink("修改資料", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                                            <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                            <li style="font-size:15pt">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="/Home/Create" id="loginLink" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />登入<span class="caret"></span></a>
+                                <ul class="dropdown-menu" style="font-size:10pt">
+                                    <li><a href="https://localhost:44388/Home/Create">會員登入</a></li>
+                                    <li><a href="https://localhost:44388/Home/Create3">管理者登入</a></li>
+                                </ul>
+                            </li>
+                                    <li style="font-size:15pt">
+
+                                        <a href="https://localhost:44388/Home/Create2" style="background-color:#A15B54"><img src="~/圖片4.jpg" width=40px />註冊</a>
+                                    </li>
+                                }
+
+                                <!--會員管理帳戶驗證的註冊和登入-->
+                                @*@Html.Partial("_LoginPartial")*@
+                            </ul>
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                }
+                            }
+                            </div>
+                    </div>
+                </nav>
+            </span>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+
+        </div>
+
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>
+    <style>
+        nav a {
+            color: inherit;
+        }
+    </style>

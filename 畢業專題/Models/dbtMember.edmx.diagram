@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="28f7387b461342c3a63c0facb69fa2d1" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="dbtMemberModel.tLogin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtMemberModel.tRegister" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtMemberModel.tLogout" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="dbtMemberModel.tAdopt" Width="1.5" PointX="5" PointY="1.25" />
+        <EntityTypeShape EntityType="dbtMemberModel.tContact" Width="1.5" PointX="5" PointY="8.375" />
+        <EntityTypeShape EntityType="dbtMemberModel.tDogs" Width="1.5" PointX="2.75" PointY="4.875" />
+        <EntityTypeShape EntityType="dbtMemberModel.tReserve" Width="1.5" PointX="5" PointY="10.75" />
+        <EntityTypeShape EntityType="dbtMemberModel.tRegisterBackup" Width="1.5" PointX="5.375" PointY="4.75" />
+        <AssociationConnector Association="dbtMemberModel.FK_tAdopt" />
+        <AssociationConnector Association="dbtMemberModel.FK_tAdopt1" />
+        <AssociationConnector Association="dbtMemberModel.FK_tContact" />
+        <AssociationConnector Association="dbtMemberModel.FK_tReserve" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

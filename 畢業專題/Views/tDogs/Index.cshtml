@@ -1,0 +1,109 @@
+﻿@model IEnumerable<畢業專題.Models.tDogs>
+
+@{
+    ViewBag.Title = "Adopt";
+}
+<head>
+    <style>
+        #footer {
+            min-width: 1000px;
+            height: 45px;
+        }
+
+        .header {
+            margin: 0px 0px;
+            padding: 0px 0px;
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            color: white;
+            background: #D07D82;
+            font-weight: bold;
+            text-align: center;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body style="background-color:#E4B295">
+    <footer id="footer">
+        <div class="header" style="text-align:center;width:1170px;line-height:60px;border:1px ;border-radius:30px 30px;border:none;font-size:30pt;padding-top:0.3em"> 帶我回家 </div>
+    </footer>
+
+    @{int count = 0; string color = "";}
+    @foreach (var item in Model)
+    {
+        switch (count%7)
+        {
+            case 0:
+                color = "#F9DFAD";
+                break;
+            case 1:
+                color = "#FFDA93";
+                break;
+            case 2:
+                color = "#F0D3ED";
+                break;
+            case 3:
+                color = "#FDCFF8";
+                break;
+            case 4:
+                color = "#FACAC7";
+                break;
+            case 5:
+                color = "#FFBCB8";
+                break;
+            case 6:
+                color = "#FAC17E";
+                break;
+            case 7:
+                color = "#F9B06E";
+                break;
+            default:
+                color = "#F9DFAD";
+                break;
+        }
+        if (count % 2 == 0)
+        {
+            <div style="padding-top:3em;float:left">
+                <div style="width:450px;height:300px;background-color:@(color);border-radius:30px 30px;border:none">
+                    <img src="~/@(item.dogName + ".jpg")" style="width:200px;height:300px;float:left;border-radius:30px 0px 0px 30px;border:none" />
+                    <p style="text-align:center;padding-top:1em;font-size:35px"><b>@Html.DisplayFor(modelItem => item.dogName)</b></p><br />
+                    <ul>
+                        <li style="padding-left:8em;font-size:25px"><img src="~/icon1.png" style="width:40px" /><b>&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.dogSex)  </b></li>
+                        &nbsp;
+                        <li style="padding-left:8em;font-size:25px"><img src="~/icon2.png" style="width:40px" /><b>&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.dogBreed)</b></li>
+                    </ul><br />
+                    <span style="padding-left:4em;">
+                        <b>
+                            <input type="submit" value="看看我"
+                                   style="background-color:white;width:150px;height:40px;border-radius:10px 10px;border:none;font-size:20px">
+                        </b>
+                    </span>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div style="float:right;padding-top:3em">
+                <div style="width:450px;height:300px;background-color:@(color);border-radius:30px 30px;border:none">
+                    <img src="~/@(item.dogName + ".jpg")" style="width:200px;height:300px;float:left;border-radius:30px 0px 0px 30px;border:none" />
+                    <p style="text-align:center;padding-top:1em;font-size:35px"><b>@Html.DisplayFor(modelItem => item.dogName)</b></p><br />
+                    <ul>
+                        <li style="padding-left:8em;font-size:25px"><img src="~/icon1.png" style="width:40px" /><b>&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.dogSex)</b></li>
+                        &nbsp;
+                        <li style="padding-left:8em;font-size:25px"><img src="~/icon2.png" style="width:40px" /><b>&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.dogBreed)</b></li>
+                    </ul><br />
+                    <span style="padding-left:4em;">
+                        <b>
+                            <input type="submit" value="看看我"
+                                   style="background-color:white;width:150px;height:40px;border-radius:10px 10px;border:none;font-size:20px">
+                        </b>
+                    </span>
+                </div>
+            </div>
+        }
+        count++;
+    }
+
+</body>

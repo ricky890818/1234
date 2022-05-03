@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Create3";
+}
+
+
+
+<head>
+    <meta charset="utf-8">
+    <script language="javascript">
+            window.onload = function () {
+                var show = @Html.Raw(Json.Encode(TempData["show"]));
+                    if (show != null) {
+                    alert(show);
+                }
+            }
+    </script>
+</head>
+
+<body style="background-color:#E4B295">
+    <div class="dowebok">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <style>
+                        img {
+                            float: left
+                        }
+                    </style>
+                    <img src="~/7.gif" width="30%" alt="IMG">
+                </div>
+
+                <!--form開頭新增action="#" method="post"-->
+                <!--for移到第43行-->
+                <div style="padding-left:40em;">
+                    <div style="padding-top:10em;">
+                        <div style="text-indent:0.2cm">
+                            <div style="background-color: #BD6161; min-width: 150px; max-width: 350px; max-height: 83px; min-height: 40px; left: 864px; top: 244px; border-top-left-radius: 50px; border-top-right-radius: 50px;text-align:center;padding-top:10px; ">
+                                <span class="login100-form-title" style="color:white;font-size:20px">
+                                    <b>管理者登入</b>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div style="background-color:#F5D8B6; min-width: 150px; max-width: 350px; max-height: 300px; min-height:250px; left: 864px; top: 327px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;text-align:center ">
+
+                            <form class="login100-form validate-form" action="#" method="post">
+                                &nbsp;
+                                <div class="wrap-input100 validate-input">
+                                    <input class="input100" type="text" name="email" placeholder="帳號/信箱">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                &nbsp;
+                                <div class="wrap-input100 validate-input">
+                                    <input class="input100" type="password" name="pass" placeholder="密碼">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                &nbsp;
+                                <!--class="container-login100-form-btn" 改成submit-->
+                                <!-- input結尾刪除-->
+                                <!-- input type改成submit-->
+                                <div class="submit">
+                                    <span style="color:white"><input type="submit" onclick="javascrip: location.href='https://localhost:44388/'" value="登入" style="background-color:#BD6161;width:70px;height:40px;border-radius:10px 10px;border:none"></span>
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+
+                                    <span style="color:white"><input type="submit" onclick="javascrip: location.href='https://localhost:44388/Home/Create2'" value="註冊" style="background-color:#BD6161;width:70px;height:40px;border-radius:10px 10px;border:none"></span>
+                                </div>
+                                &nbsp;
+                                <div class="wthree-text">
+
+                                    <input type="checkbox" id="brand" value="" />
+                                    <label for="brand"><span style="font-size:15px">記住我</span></label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    @Html.ActionLink("忘記密碼", "Forget", "Mail_")
+                                   
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--from結尾移到第88行-->
+
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <script language="javascript">
+            window.onload = function () {
+                var show = @Html.Raw(Json.Encode(TempData["show"]));
+                    if (show != null) {
+                    alert(show);
+                }
+                var show2 = @Html.Raw(Json.Encode(User.Identity.GetUserName()));
+                if (show2 != null) {
+                    alert("您好 " + show2 + "!");
+                }
+            }
+    </script>
+    <style>
+        img {
+            float: left
+        }
+    </style>
+
+</head>
+<body style="background-color:#FCA587">
+    <style>
+        img {
+            float: left
+        }
+    </style>
+    <img src="~/6.jpg" width="40%">
+    <div style="padding-left:40em;">
+        <div style="padding-top:5em;">
+            <p>
+                「張媽媽狗場」是位於新北市的私人流浪動物收容所，裡頭的流浪狗都是由狗場主人張媽媽在照顧，從洗澡、除蚤、送醫院打預防針到送養，幾乎靠張媽媽一個人親力親為。
+            </p>
+            <p>
+                這裡收留的狗，每一隻都是一個故事。
+            </p>
+            <p>
+                如果有機會參與牠們的故事您願意花十餘年的時間陪伴牠嗎？
+            <p>
+                現在就讓我們來看看牠們的故事.....
+            </p>
+
+            <p>
+                領養代替購買
+            </p>
+            <p> 認養珍愛生命</p> <br />
+
+
+
+</body>
+
+
+
+
+</html>
+
+
+
+

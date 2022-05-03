@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbtMemberModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tAdopt">
+          <Key>
+            <PropertyRef Name="dogId" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="dogId" Type="int" Nullable="false" />
+          <Property Name="userEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="adDate" Type="datetime" Nullable="false" />
+          <Property Name="nextDate" Type="datetime" Nullable="false" />
+          <Property Name="adType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tContact">
+          <Key>
+            <PropertyRef Name="userPhone" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="userPhone" Type="int" Nullable="false" />
+          <Property Name="userEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tDogs">
+          <Key>
+            <PropertyRef Name="dogId" />
+          </Key>
+          <Property Name="dogId" Type="int" Nullable="false" />
+          <Property Name="dogName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dogBreed" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dogSize" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dogAge" Type="int" Nullable="false" />
+          <Property Name="dogSex" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dogNeuter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dogStory" Type="nvarchar(max)" />
+          <Property Name="dogImage" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tLogin">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="time" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tLogout">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="time" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tRegister">
+          <Key>
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userPhone" Type="int" Nullable="false" />
+          <Property Name="userAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tempGuid" Type="nvarchar" MaxLength="50" />
+          <Property Name="emailCheck" Type="nvarchar" MaxLength="10" />
+          <Property Name="userExp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userLog" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'C:\USERS\WUCHE\DESKTOP\2022\GIT\畢業專題專案檔\畢業專題\APP_DATA\DBTMEMBER.MDF.dbo.tRegisterBackup' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="tRegisterBackup">
+          <Key>
+            <PropertyRef Name="username" />
+            <PropertyRef Name="userPhone" />
+            <PropertyRef Name="userAccount" />
+            <PropertyRef Name="userPassword" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userPhone" Type="int" Nullable="false" />
+          <Property Name="userAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tempGuid" Type="nvarchar" MaxLength="50" />
+          <Property Name="emailCheck" Type="nvarchar" MaxLength="10" />
+          <Property Name="userExp" Type="nvarchar" MaxLength="50" />
+          <Property Name="userLog" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tReserve">
+          <Key>
+            <PropertyRef Name="dogId" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="dogId" Type="int" Nullable="false" />
+          <Property Name="userEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="book" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tAdopt">
+          <End Role="tDogs" Type="Self.tDogs" Multiplicity="1" />
+          <End Role="tAdopt" Type="Self.tAdopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDogs">
+              <PropertyRef Name="dogId" />
+            </Principal>
+            <Dependent Role="tAdopt">
+              <PropertyRef Name="dogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tAdopt1">
+          <End Role="tRegister" Type="Self.tRegister" Multiplicity="1" />
+          <End Role="tAdopt" Type="Self.tAdopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegister">
+              <PropertyRef Name="userEmail" />
+            </Principal>
+            <Dependent Role="tAdopt">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tContact">
+          <End Role="tRegister" Type="Self.tRegister" Multiplicity="1" />
+          <End Role="tContact" Type="Self.tContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegister">
+              <PropertyRef Name="userEmail" />
+            </Principal>
+            <Dependent Role="tContact">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tReserve">
+          <End Role="tRegister" Type="Self.tRegister" Multiplicity="1" />
+          <End Role="tReserve" Type="Self.tReserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegister">
+              <PropertyRef Name="userEmail" />
+            </Principal>
+            <Dependent Role="tReserve">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbtMemberModelStoreContainer">
+          <EntitySet Name="tAdopt" EntityType="Self.tAdopt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tContact" EntityType="Self.tContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tDogs" EntityType="Self.tDogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tLogin" EntityType="Self.tLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tLogout" EntityType="Self.tLogout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tRegister" EntityType="Self.tRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tReserve" EntityType="Self.tReserve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tRegisterBackup" EntityType="Self.tRegisterBackup" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tRegisterBackup].[username] AS [username], 
+    [tRegisterBackup].[userPhone] AS [userPhone], 
+    [tRegisterBackup].[userAccount] AS [userAccount], 
+    [tRegisterBackup].[userPassword] AS [userPassword], 
+    [tRegisterBackup].[userEmail] AS [userEmail], 
+    [tRegisterBackup].[tempGuid] AS [tempGuid], 
+    [tRegisterBackup].[emailCheck] AS [emailCheck], 
+    [tRegisterBackup].[userExp] AS [userExp], 
+    [tRegisterBackup].[userLog] AS [userLog]
+    FROM [dbo].[tRegisterBackup] AS [tRegisterBackup]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tAdopt" Association="Self.FK_tAdopt">
+            <End Role="tDogs" EntitySet="tDogs" />
+            <End Role="tAdopt" EntitySet="tAdopt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tAdopt1" Association="Self.FK_tAdopt1">
+            <End Role="tRegister" EntitySet="tRegister" />
+            <End Role="tAdopt" EntitySet="tAdopt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tContact" Association="Self.FK_tContact">
+            <End Role="tRegister" EntitySet="tRegister" />
+            <End Role="tContact" EntitySet="tContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tReserve" Association="Self.FK_tReserve">
+            <End Role="tRegister" EntitySet="tRegister" />
+            <End Role="tReserve" EntitySet="tReserve" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbtMemberModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tLogin">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tRegister">
+          <Key>
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userPhone" Type="Int32" Nullable="false" />
+          <Property Name="userAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tempGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emailCheck" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="userExp" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userLog" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tAdopt" Relationship="dbtMemberModel.FK_tAdopt1" FromRole="tRegister" ToRole="tAdopt" />
+          <NavigationProperty Name="tContact" Relationship="dbtMemberModel.FK_tContact" FromRole="tRegister" ToRole="tContact" />
+          <NavigationProperty Name="tReserve" Relationship="dbtMemberModel.FK_tReserve" FromRole="tRegister" ToRole="tReserve" />
+        </EntityType>
+        <EntityContainer Name="dbtMemberEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tLogin" EntityType="Self.tLogin" />
+          <EntitySet Name="tRegister" EntityType="Self.tRegister" />
+          <EntitySet Name="tLogout" EntityType="dbtMemberModel.tLogout" />
+          <EntitySet Name="tAdopt" EntityType="dbtMemberModel.tAdopt" />
+          <EntitySet Name="tContact" EntityType="dbtMemberModel.tContact" />
+          <EntitySet Name="tDogs" EntityType="dbtMemberModel.tDogs" />
+          <EntitySet Name="tReserve" EntityType="dbtMemberModel.tReserve" />
+          <EntitySet Name="tRegisterBackup" EntityType="dbtMemberModel.tRegisterBackup" />
+          <AssociationSet Name="FK_tAdopt" Association="dbtMemberModel.FK_tAdopt">
+            <End Role="tDogs" EntitySet="tDogs" />
+            <End Role="tAdopt" EntitySet="tAdopt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tAdopt1" Association="dbtMemberModel.FK_tAdopt1">
+            <End Role="tRegister" EntitySet="tRegister" />
+            <End Role="tAdopt" EntitySet="tAdopt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tContact" Association="dbtMemberModel.FK_tContact">
+            <End Role="tRegister" EntitySet="tRegister" />
+            <End Role="tContact" EntitySet="tContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tReserve" Association="dbtMemberModel.FK_tReserve">
+            <End Role="tRegister" EntitySet="tRegister" />
+            <End Role="tReserve" EntitySet="tReserve" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tLogout">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tAdopt">
+          <Key>
+            <PropertyRef Name="dogId" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="dogId" Type="Int32" Nullable="false" />
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nextDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="adType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tDogs" Relationship="dbtMemberModel.FK_tAdopt" FromRole="tAdopt" ToRole="tDogs" />
+          <NavigationProperty Name="tRegister" Relationship="dbtMemberModel.FK_tAdopt1" FromRole="tAdopt" ToRole="tRegister" />
+        </EntityType>
+        <EntityType Name="tContact">
+          <Key>
+            <PropertyRef Name="userPhone" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="userPhone" Type="Int32" Nullable="false" />
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tRegister" Relationship="dbtMemberModel.FK_tContact" FromRole="tContact" ToRole="tRegister" />
+        </EntityType>
+        <EntityType Name="tDogs">
+          <Key>
+            <PropertyRef Name="dogId" />
+          </Key>
+          <Property Name="dogId" Type="Int32" Nullable="false" />
+          <Property Name="dogName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogBreed" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogSize" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogAge" Type="Int32" Nullable="false" />
+          <Property Name="dogSex" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogNeuter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogStory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dogImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tAdopt" Relationship="dbtMemberModel.FK_tAdopt" FromRole="tDogs" ToRole="tAdopt" />
+        </EntityType>
+        <EntityType Name="tReserve">
+          <Key>
+            <PropertyRef Name="dogId" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="dogId" Type="Int32" Nullable="false" />
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="book" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tRegister" Relationship="dbtMemberModel.FK_tReserve" FromRole="tReserve" ToRole="tRegister" />
+        </EntityType>
+        <EntityType Name="tRegisterBackup">
+          <Key>
+            <PropertyRef Name="username" />
+            <PropertyRef Name="userPhone" />
+            <PropertyRef Name="userAccount" />
+            <PropertyRef Name="userPassword" />
+            <PropertyRef Name="userEmail" />
+          </Key>
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userPhone" Type="Int32" Nullable="false" />
+          <Property Name="userAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tempGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emailCheck" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="userExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userLog" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tAdopt">
+          <End Type="dbtMemberModel.tDogs" Role="tDogs" Multiplicity="1" />
+          <End Type="dbtMemberModel.tAdopt" Role="tAdopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tDogs">
+              <PropertyRef Name="dogId" />
+            </Principal>
+            <Dependent Role="tAdopt">
+              <PropertyRef Name="dogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tAdopt1">
+          <End Type="dbtMemberModel.tRegister" Role="tRegister" Multiplicity="1" />
+          <End Type="dbtMemberModel.tAdopt" Role="tAdopt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegister">
+              <PropertyRef Name="userEmail" />
+            </Principal>
+            <Dependent Role="tAdopt">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tContact">
+          <End Type="dbtMemberModel.tRegister" Role="tRegister" Multiplicity="1" />
+          <End Type="dbtMemberModel.tContact" Role="tContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegister">
+              <PropertyRef Name="userEmail" />
+            </Principal>
+            <Dependent Role="tContact">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tReserve">
+          <End Type="dbtMemberModel.tRegister" Role="tRegister" Multiplicity="1" />
+          <End Type="dbtMemberModel.tReserve" Role="tReserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tRegister">
+              <PropertyRef Name="userEmail" />
+            </Principal>
+            <Dependent Role="tReserve">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbtMemberModelStoreContainer" CdmEntityContainer="dbtMemberEntities1">
+          <EntitySetMapping Name="tLogin">
+            <EntityTypeMapping TypeName="dbtMemberModel.tLogin">
+              <MappingFragment StoreEntitySet="tLogin">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tRegister">
+            <EntityTypeMapping TypeName="dbtMemberModel.tRegister">
+              <MappingFragment StoreEntitySet="tRegister">
+                <ScalarProperty Name="userLog" ColumnName="userLog" />
+                <ScalarProperty Name="userExp" ColumnName="userExp" />
+                <ScalarProperty Name="emailCheck" ColumnName="emailCheck" />
+                <ScalarProperty Name="tempGuid" ColumnName="tempGuid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="userAccount" ColumnName="userAccount" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tLogout">
+            <EntityTypeMapping TypeName="dbtMemberModel.tLogout">
+              <MappingFragment StoreEntitySet="tLogout">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAdopt">
+            <EntityTypeMapping TypeName="dbtMemberModel.tAdopt">
+              <MappingFragment StoreEntitySet="tAdopt">
+                <ScalarProperty Name="adType" ColumnName="adType" />
+                <ScalarProperty Name="nextDate" ColumnName="nextDate" />
+                <ScalarProperty Name="adDate" ColumnName="adDate" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="dogId" ColumnName="dogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tContact">
+            <EntityTypeMapping TypeName="dbtMemberModel.tContact">
+              <MappingFragment StoreEntitySet="tContact">
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tDogs">
+            <EntityTypeMapping TypeName="dbtMemberModel.tDogs">
+              <MappingFragment StoreEntitySet="tDogs">
+                <ScalarProperty Name="dogImage" ColumnName="dogImage" />
+                <ScalarProperty Name="dogStory" ColumnName="dogStory" />
+                <ScalarProperty Name="dogNeuter" ColumnName="dogNeuter" />
+                <ScalarProperty Name="dogSex" ColumnName="dogSex" />
+                <ScalarProperty Name="dogAge" ColumnName="dogAge" />
+                <ScalarProperty Name="dogSize" ColumnName="dogSize" />
+                <ScalarProperty Name="dogBreed" ColumnName="dogBreed" />
+                <ScalarProperty Name="dogName" ColumnName="dogName" />
+                <ScalarProperty Name="dogId" ColumnName="dogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tReserve">
+            <EntityTypeMapping TypeName="dbtMemberModel.tReserve">
+              <MappingFragment StoreEntitySet="tReserve">
+                <ScalarProperty Name="book" ColumnName="book" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="dogId" ColumnName="dogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tRegisterBackup">
+            <EntityTypeMapping TypeName="dbtMemberModel.tRegisterBackup">
+              <MappingFragment StoreEntitySet="tRegisterBackup">
+                <ScalarProperty Name="userLog" ColumnName="userLog" />
+                <ScalarProperty Name="userExp" ColumnName="userExp" />
+                <ScalarProperty Name="emailCheck" ColumnName="emailCheck" />
+                <ScalarProperty Name="tempGuid" ColumnName="tempGuid" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+                <ScalarProperty Name="userAccount" ColumnName="userAccount" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

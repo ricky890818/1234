@@ -1,0 +1,82 @@
+﻿@model 畢業專題.Models.tDogs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tDogs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dogName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogBreed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogBreed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogSex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogSex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogNeuter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogNeuter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogStory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogStory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogImage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.dogId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

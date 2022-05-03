@@ -1,0 +1,110 @@
+﻿@model IEnumerable<畢業專題.Models.dbtMemberEntities1>
+@{
+    ViewBag.Title = "Create2";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>註冊</title>
+    <script language="javascript">
+            window.onload = function () {
+                var show = @Html.Raw(Json.Encode(TempData["show"]));
+                    if (show != null) {
+                    alert(show);
+                }
+            }
+    </script> 
+</head>
+<body style="background-color:#E4B295">
+    <style>
+        img {
+            float: left
+        }
+    </style>
+    <img src="~/7.gif" width="30%" alt="IMG">
+    <div style="padding-left:40em;">
+    <div class="container" style="padding-top:5em;">
+        <div class="register">
+            <div class="title" style="text-indent:0.2cm;" >
+                <div style="background-color: #874444; min-width: 150px; max-width: 350px;max-height: 83px;min-height:40px; left: 864px; top: 244px; border-top-left-radius: 50px; border-top-right-radius: 50px; text-align:center;padding-top:10px;">
+                    <span style="color:white;font-size:20px"><b>註冊</b></span>
+                </div>
+            </div>
+            <div style="background-color: #F6D5BD; min-width: 150px; max-width: 350px; max-height: 700px; min-height:400px; left: 864px; top: 327px;border-bottom-right-radius:20px;border-bottom-left-radius:20px;text-align:center">
+                &nbsp;
+            <form action="@Url.Action("Register","Home")" method="post">
+                <div class="username" >
+
+                    <div class="username-input">
+                        <input type="text" id="username" name="username" required="required" placeholder="姓名:" />
+                    </div>
+                </div>
+                &nbsp;
+                <div class="userPhone">
+
+                    <div class="userPhone-input">
+                        <input type="text" pattern="09\d{2}\d{6}"id="userPhone" name="userPhone" maxlength="11" required="required" placeholder="手機號碼:" title="如09xxxxxxxx" />
+                    </div>
+                </div>
+                &nbsp;
+                <div class="userAccount">
+
+                    <div class="userAccount-input">
+                        <input type="text" id="userAccount" name="userAccount"required="required" placeholder="帳號名稱:" />
+
+                    </div>
+                </div>
+                &nbsp;
+                <div class="userPassword">
+
+                    <div class="userPassword-input">
+                        <input type="password" id="userPassword" name="userPassword" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('至少6位元(英文加數字)');" placeholder="密碼:至少6位元(英文加數字)" />
+                    </div>
+
+
+                </div>
+                &nbsp;
+                <div class="userRePassword">
+
+                    <div class="userRePassword-input">
+                        <input type="password" id="userRePassword" name="userRePassword" class="userRePassword" value=""  oninput="setCustomValidity('');" onchange="if(document.getElementById('userPassword').value != document.getElementById('userRePassword').value){setCustomValidity('密碼不吻合');}" placeholder="再次輸入密碼:" />
+                    </div>
+                </div>
+                &nbsp;
+
+
+                <div class="userEmail">
+
+                    <div class="userEmail-input">
+                        <input name="userEmail" id="userEmail" type="email" required placeholder="E-mail" />
+                    </div>
+                </div>
+                &nbsp;
+
+
+                <div class="submit">
+                    <span style="color:white"><input id="submit-button" type="submit" value="註冊" style="background-color:#874444;width:70px;height:40px;border-radius:10px 10px;border:none"></span>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                   
+                    <span style="color:white"><input id="cancel-button" type="submit" value="取消" style="background-color:#874444;width:70px;height:40px;border-radius:10px 10px;border:none"></span>
+                </div>
+
+                
+            </form>
+         </div>
+        </div>
+    </div>
+   </div>
+</body>
+
+

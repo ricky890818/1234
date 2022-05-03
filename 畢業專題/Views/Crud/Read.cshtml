@@ -1,0 +1,66 @@
+﻿@model IEnumerable<畢業專題.Models.tRegister>
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>會員管理_修改資料</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userAccount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tempGuid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emailCheck)
+            </th>
+        </tr>
+
+        @foreach(var item in Model)
+            {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tempGuid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emailCheck)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.tempGuid })  |
+            @Html.ActionLink("Delete", "Delete", new { id = item.tempGuid }
+                 , new { onclick = "return confirm('確定要刪除嗎?')" })
+                
+        </td>
+    </tr>
+            }
+
+    </table>
+
